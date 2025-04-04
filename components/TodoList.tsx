@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View,FlatList } from 'react-native'
 import React from 'react'
+import TodoListItem from './TodoListItem';
 
 type Props = {
     todoList?: string[];
@@ -7,24 +8,16 @@ type Props = {
 
 const TodoList = ({todoList}:Props) => {
 
-    const handleRenderItem = ({item}: {item:string}) => {
-        return(<Text style={styles.item} >{item}</Text>)
-    }
-
+   
   return (
     <FlatList 
+    contentContainerStyle={{gap:4}}
     data={todoList}
     keyExtractor={(todo) => todo}
-    renderItem={handleRenderItem}
+    renderItem={({item})=> <TodoListItem todo={item}/>}
     />
   )
 }
 
 export default TodoList
 
-const styles = StyleSheet.create({
-    item:{
-        fontSize:20,
-
-    },
-})
