@@ -1,5 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native'
 import React from 'react'
+import { isSmallDevice } from '@/constants/screenWidths';
 
 type Props={
     variant?: "primary" | "secondary" | "destructive" | "success";
@@ -9,6 +10,7 @@ type Props={
 
 const Button = ({text,onPress,variant= "primary"}:Props) => {
     let backgroundColor = "darkseagreen"
+    const {width,height} = useWindowDimensions();
 
     switch (variant) {
       case 'primary':
@@ -31,8 +33,8 @@ const Button = ({text,onPress,variant= "primary"}:Props) => {
   return (
     <TouchableOpacity 
     onPress={onPress} 
-    style={[styles.container,{backgroundColor:backgroundColor}]}>
-      <Text style={styles.text}>{text}</Text>
+    style={[styles.container,{backgroundColor:backgroundColor, padding: isSmallDevice(width) ? 8  :12 }]}>
+      <Text style={[styles.text, {fontSize:isSmallDevice(width) ? 22 : 32 }]}>{text}</Text>
     </TouchableOpacity>
   )
 }
@@ -43,13 +45,13 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor:"pink",
         paddingHorizontal:8,
-        paddingVertical:4,
         alignSelf:"flex-start",
         borderRadius:8,
         marginTop:5,
+        borderWidth:4,
+        borderColor:"maroon",
     },
     text:{
-        fontSize:18,
         color:"white",
     },
 })
