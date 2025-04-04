@@ -13,7 +13,13 @@ type Props = {
 const InputComponent = ({placeholder,value,onChangeText} : Props) => {
   return (
         <SafeAreaView>
-            <TextInput value={value} onChangeText={onChangeText} placeholder={placeholder} style={styles.input}/>
+            <TextInput 
+            value={value} 
+            onChangeText={onChangeText} 
+            placeholder={placeholder} 
+            style={styles.input}
+            autoComplete="off"
+            />
         </SafeAreaView>
       
     
