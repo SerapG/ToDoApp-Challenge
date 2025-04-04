@@ -3,14 +3,18 @@ import React from 'react'
 import Button from './Button';
 
 type Props = {
-    todo? : string;
+    todo : string;
+    onDelete: (todo: string) => void;
 }
 
-const TodoListItem = ({todo}: Props) => {
+const TodoListItem = ({todo,onDelete}: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{todo}</Text>
-      <Button text='sil' variant='secondary'/>
+      <Button 
+      onPress={() => onDelete(todo)} 
+      text='sil' 
+      variant='secondary'/>
     </View>
   )
 }

@@ -10,17 +10,19 @@ const index = () => {
     const [todoList,setTodolist] = useState<string[]>([])
     const [todo , setTodo]= useState("")
 
-    console.log({todoList})
-
     const handlePressed = () => {
         setTodolist([...todoList, todo])
         setTodo("");
+    }
+    const handleDelete = (deletedTodo:string) => {
+        const newList = todoList.filter(todo => todo !== deletedTodo)
+        setTodolist(newList)
     }
   return (
     <View style={styles.container} >
       <InputComponent value={todo} onChangeText={setTodo} placeholder="yapilacak.."/>
       <Button text="Ekle" onPress={()=> handlePressed()}/>
-       <TodoList todoList={todoList}/>
+       <TodoList onDelete={handleDelete} todoList={todoList}/>
     </View>
   )
 }

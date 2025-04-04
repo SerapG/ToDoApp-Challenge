@@ -4,9 +4,10 @@ import TodoListItem from './TodoListItem';
 
 type Props = {
     todoList?: string[];
+    onDelete: (todo:string) => void;
 }
 
-const TodoList = ({todoList}:Props) => {
+const TodoList = ({todoList,onDelete}:Props) => {
 
    
   return (
@@ -14,7 +15,7 @@ const TodoList = ({todoList}:Props) => {
     contentContainerStyle={{gap:4}}
     data={todoList}
     keyExtractor={(todo) => todo}
-    renderItem={({item})=> <TodoListItem todo={item}/>}
+    renderItem={({item})=> <TodoListItem onDelete={onDelete} todo={item}/>}
     />
   )
 }
